@@ -1,9 +1,9 @@
 #!/bin/bash
 export SHELL_PATH=$(dirname $(readlink -f $0))
-export WORKSPACE=${SHELL_PATH}
+export WORKSPACE=${SHELL_PATH}/..
 export CARLA_ROOT=${WORKSPACE}/CARLA_Leaderboard_10
-export LEADERBOARD_ROOT=${WORKSPACE}/leaderboard
-export SCENARIO_RUNNER_ROOT=${WORKSPACE}/scenario_runner
+export LEADERBOARD_ROOT=${WORKSPACE}/leaderboard_10/leaderboard
+export SCENARIO_RUNNER_ROOT=${WORKSPACE}/leaderboard_10/scenario_runner
 
 export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla
 export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg
@@ -20,12 +20,11 @@ ROUTES=${LEADERBOARD_ROOT}/data/routes_testing.xml
 ROUTES_SUBSET=0
 REPETITIONS=1
 CHALLENGE_TRACK_CODENAME=SENSORS
-CHECKPOINT_ENDPOINT=${WORKSPACE}/logs/log_route_${ROUTES_SUBSET}.json
+CHECKPOINT_ENDPOINT=${WORKSPACE}/logs/L10/log_route_${ROUTES_SUBSET}.json
 TEAM_AGENT=${WORKSPACE}/team_code/lav_agent.py
 TEAM_CONFIG=${WORKSPACE}/team_code/config.yaml
 
 RESUME=0
-
 
 python3 ${LEADERBOARD_ROOT}/leaderboard/leaderboard_evaluator.py \
 --port=${PORT} \

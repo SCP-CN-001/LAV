@@ -7,7 +7,7 @@ import math
 class RoutePlanner(object):
     
     EARTH_RADIUS = 6371e3 # 6371km
-
+    
     def __init__(self, global_plan, curr_threshold=20, next_threshold=75, debug=False):
         self.route = deque()
         self.curr_threshold = curr_threshold
