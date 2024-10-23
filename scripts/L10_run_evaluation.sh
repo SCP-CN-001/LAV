@@ -20,7 +20,7 @@ ROUTES=${LEADERBOARD_ROOT}/data/routes_testing.xml
 ROUTES_SUBSET=0
 REPETITIONS=1
 CHALLENGE_TRACK_CODENAME=SENSORS
-CHECKPOINT_ENDPOINT=${WORKSPACE}/logs/L10/log_route_${ROUTES_SUBSET}.json
+CHECKPOINT_ENDPOINT=${WORKSPACE}/logs/L10_testing/log_route_${ROUTES_SUBSET}.json
 TEAM_AGENT=${WORKSPACE}/team_code/lav_agent.py
 TEAM_CONFIG=${WORKSPACE}/team_code/config.yaml
 
@@ -39,4 +39,3 @@ python3 ${LEADERBOARD_ROOT}/leaderboard/leaderboard_evaluator.py \
 --agent-config=${TEAM_CONFIG} \
 --debug=${DEBUG_CHALLENGE} \
 --resume=${RESUME}
-
