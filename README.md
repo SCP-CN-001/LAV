@@ -1,38 +1,70 @@
 # LAV
-![teaser](assets/teaser.svg)
-> [**Learning from All Vehicles**](https://dotchen.github.io/LAV/)    
-> Dian Chen, Philipp Kr&auml;henb&uuml;hl         
-> _CVPR 2022_ (also [arXiV 2203.11934](http://arxiv.org/abs/2203.11934))
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-from-all-vehicles/autonomous-driving-on-carla-leaderboard)](https://paperswithcode.com/sota/autonomous-driving-on-carla-leaderboard?p=learning-from-all-vehicles)
 
-This repo contains code for paper [Learning from all vehicles](http://arxiv.org/abs/2203.11934).
+LAV achieved 5th place on the CARLA Leaderboard 1.0, demonstrating the effectiveness of a state-of-the-art, end-to-end imitation learning-based approach. This repository offers a migrated version of LAV for CARLA Leaderboard 2.0, which is part of the benchmark suite for [Ramble](https://github.com/SCP-CN-001/ramble). The original repository can be found [here](git@github.com:dotchen/LAV.git).
 
-It distills a model that performs joint perception, multi-modal prediction and planning, and we hope it to be a great starter kit for end-to-end autonomous driving research.
+The code from the original repository has been refactored for better readability. The previous directory structure, which included `team_code/` and `team_code_v2/`, has now been consolidated into a single `team_code/` folder to reduce confusion. Additionally, we have cleaned up the training scripts in `lav/`, removing the `_v2` suffix from certain files and updating the dependencies. Since the model is trained offline using expert-generated data, the training scripts are compatible with both Leaderboard 1.0 and Leaderboard 2.0 data.
 
 ## Reference
-If you find our repo, dataset or paper useful, please cite us as
+
+If you find our repo, dataset or paper useful, please cite us and the original LAV paper:
+
 ```bibtex
-@inproceedings{chen2022lav,
+@article{li2024end,
+  title={End-to-end Driving in High-Interaction Traffic Scenarios with Reinforcement Learning},
+  author={Li, Yueyuan and Jiang, Mingyang and Zhang, Songan and Yuan, Wei and Wang, Chunxiang and Yang, Ming},
+  journal={arXiv preprint arXiv:2410.02253},
+  year={2024}
+}
+
+@inproceedings{chen2022learning,
   title={Learning from all vehicles},
   author={Chen, Dian and Kr{\"a}henb{\"u}hl, Philipp},
-  booktitle={CVPR},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={17222--17231},
   year={2022}
 }
 ```
 
-## Updates
-* We have slightly updated codes optimized for leaderboard inference speed with temporal LiDAR scans (`team_code_v2/lav_agent_fast.py)`.
-* We have released agent and weights for our leaderboard submission.
-
 ## Demo Video
 [![Demo](https://img.youtube.com/vi/-TlxbmSQ7rQ/0.jpg)](https://www.youtube.com/watch?v=-TlxbmSQ7rQ)
 
-Also checkout our [website](https://dotchen.github.io/LAV/)!
+Also checkout [website](https://dotchen.github.io/LAV/)!
 
-## Getting Started
-* To run CARLA and train the models, make sure you are using a machine with **at least** a mid-end GPU.
-* Please follow [INSTALL.md](docs/INSTALL.md) to setup the environment.
+## Reprodce results on CARLA Leaderboard 1.0
+
+> To run CARLA and train the models, make sure you are using a machine with **at least** a mid-end GPU.
+
+### Installation
+
+1. Download and unzip [CARLA 0.9.10.1](https://github.com/carla-simulator/carla/releases/tag/0.9.10.1) to somewhere out of the repository.
+2. Install [git lfs](https://git-lfs.github.com/).
+    ```shell
+    sudo apt-get install git-lfs
+    ```
+3. Clone the repository with submodules. Check if the weight files under `weights/` are downloaded correctly.
+    ```shell
+    git clone --recurse-submodules git@github.com:SCP-CN-001/LAV.git
+    ```
+4. Create a soft link to the CARLA folder in the repository root:
+    ```shell
+    ln -s /path/to/carla ./CARLA_Leaderboard_10
+    ```
+
+### Install dependencies
+
+1. Create a dedicated conda environment. Refer [here](https://www.anaconda.com/products/individual#Downloads) if you do not have conda.
+    ```shell
+    conda env create -f environment.yaml
+    ```
+2. Install [PyTorch](https://pytorch.org/get-started/locally/)
+3. Install [torch-scatter](https://github.com/rusty1s/pytorch_scatter) based on your `CUDA` and `PyTorch` versions.
+4. Setup [wandb](https://docs.wandb.ai/quickstart)
+
+---
+
+> TODO: update the old documentation to the new one
 
 ## Data Collection
 The data collection scripts reside in the `data-collect` branch of the repo.

@@ -1,4 +1,6 @@
 */wandb/*
+logs/
+CARLA_Leaderboard_10
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
