@@ -1,4 +1,5 @@
-*/wandb/*
+wandb/
+data/
 logs/
 CARLA_Leaderboard_10
 
