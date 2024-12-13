@@ -11,24 +11,29 @@ export PYTHONPATH=$PYTHONPATH:${LEADERBOARD_ROOT}
 export PYTHONPATH=$PYTHONPATH:${SCENARIO_RUNNER_ROOT}
 
 # general parameters
-PORT=2000
-TM_PORT=2500
-DEBUG_CHALLENGE=0
+export PORT=2000
+export TM_PORT=2500
+export SEED=42
+# export SEED=11037
+# export SEED=114514
+export DEBUG_CHALLENGE=0
 
-SCENARIOS=${LEADERBOARD_ROOT}/data/all_towns_traffic_scenarios_public.json
-ROUTES=${LEADERBOARD_ROOT}/data/routes_testing.xml
-ROUTES_SUBSET=0
-REPETITIONS=1
-CHALLENGE_TRACK_CODENAME=SENSORS
-CHECKPOINT_ENDPOINT=${WORKSPACE}/logs/L10_testing/log_route_${ROUTES_SUBSET}.json
-TEAM_AGENT=${WORKSPACE}/team_code/lav_agent.py
-TEAM_CONFIG=${WORKSPACE}/team_code/config.yaml
+export SCENARIOS=${LEADERBOARD_ROOT}/data/all_towns_traffic_scenarios_public.json
+export ROUTES=${LEADERBOARD_ROOT}/data/routes_testing.xml
+export ROUTES_SUBSET=3
+export REPETITIONS=1
+export CHALLENGE_TRACK_CODENAME=SENSORS
+export TIME_STAMP=$(date +"%s")
+export CHECKPOINT_ENDPOINT=${WORKSPACE}/logs/L10_testing/route_${ROUTES_SUBSET}_${TIME_STAMP}.json
+export TEAM_AGENT=${WORKSPACE}/team_code/lav_agent.py
+export TEAM_CONFIG=${WORKSPACE}/team_code/config.yaml
 
 RESUME=0
 
 python3 ${LEADERBOARD_ROOT}/leaderboard/leaderboard_evaluator.py \
 --port=${PORT} \
 --trafficManagerPort=${TM_PORT} \
+--trafficManagerSeed=${SEED} \
 --scenarios=${SCENARIOS}  \
 --routes=${ROUTES} \
 --routes-subset=${ROUTES_SUBSET} \
